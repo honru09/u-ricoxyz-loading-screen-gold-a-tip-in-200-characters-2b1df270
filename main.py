@@ -13,8 +13,14 @@ TIP = (
     "The tests will decide which of you was right."
 )
 
+# The contest caps the tip at 200 characters.
+MAX_TIP_LENGTH = 200
+
 
 def main() -> None:
+    assert len(TIP) <= MAX_TIP_LENGTH, (
+        f"tip is {len(TIP)} chars, over the {MAX_TIP_LENGTH}-char limit"
+    )
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8", newline="\n") as f:
         f.write(TIP)
